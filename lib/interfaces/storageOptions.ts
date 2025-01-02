@@ -1,17 +1,25 @@
 import { ModuleMetadata, Type } from "@nestjs/common/interfaces";
 
-export interface DiskOptions {
-  driver: "s3" | "local";
-  profile?: string;
-  region?: string;
-  bucket?: string;
-  prefix?: string;
-  basePath?: string;
-  accessKey?: string;
-  secretKey?: string;
-  fetchRemoteCredentials?: boolean;
+export interface LocalDiskOptions {
+  driver: "local";
+  basePath: string;
   baseUrl?: string;
 }
+
+export interface S3DiskOptions {
+  driver: "s3";
+  profile?: string;
+  region?: string;
+  bucket: string;
+  prefix?: string;
+  accessKey?: string;
+  secretKey?: string;
+  basePath: string;
+  fetchRemoteCredentials?: boolean;
+  baseUrl?: string;
+  endpoint?: string;
+}
+export type DiskOptions = LocalDiskOptions | S3DiskOptions;
 
 export interface StorageOptions {
   default: string;

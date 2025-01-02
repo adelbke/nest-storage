@@ -5,6 +5,7 @@ import {
   StorageDriver$FileMetadataResponse,
   StorageDriver$PutFileResponse,
   StorageDriver$RenameFileResponse,
+  S3DiskOptions,
 } from "../interfaces";
 import { Credentials, S3, SharedIniFileCredentials } from "aws-sdk";
 import { getMimeFromExtension } from "../helpers";
@@ -12,16 +13,16 @@ import { HeadObjectRequest, PutObjectRequest } from "aws-sdk/clients/s3";
 
 export class S3Storage implements StorageDriver {
   private readonly disk: string;
-  private config: DiskOptions;
+  private config: S3DiskOptions;
   private client: S3;
 
-  constructor(disk: string, config: DiskOptions) {
+  constructor(disk: string, config: S3DiskOptions) {
     this.disk = disk;
     this.config = config;
     const options = {
       signatureVersion: "v4",
       region: this.config.region,
-    } as Record<string, any>;
+    } as S3.Types.ClientConfiguration;
 
     if (config.profile) {
       options["credentials"] = new SharedIniFileCredentials({
@@ -32,6 +33,10 @@ export class S3Storage implements StorageDriver {
         accessKeyId: config.accessKey,
         secretAccessKey: config.secretKey,
       });
+    }
+
+    if (config.endpoint) {
+      options.endpoint = config.endpoint;
     }
 
     this.client = new S3(options);
