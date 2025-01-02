@@ -33,6 +33,7 @@ class S3Storage {
         }
         if (config.endpoint) {
             options.endpoint = config.endpoint;
+            options.s3ForcePathStyle = true;
         }
         this.client = new aws_sdk_1.S3(options);
     }

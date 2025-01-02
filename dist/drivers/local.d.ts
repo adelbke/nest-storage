@@ -1,10 +1,10 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { DiskOptions, FileOptions, StorageDriver, StorageDriver$FileMetadataResponse, StorageDriver$PutFileResponse, StorageDriver$RenameFileResponse } from "../interfaces";
+import { FileOptions, LocalDiskOptions, StorageDriver, StorageDriver$FileMetadataResponse, StorageDriver$PutFileResponse, StorageDriver$RenameFileResponse } from "../interfaces";
 export declare class Local implements StorageDriver {
     private disk;
     private config;
-    constructor(disk: string, config: DiskOptions);
+    constructor(disk: string, config: LocalDiskOptions);
     put(filePath: string, fileContent: any, options?: FileOptions): Promise<StorageDriver$PutFileResponse>;
     get(filePath: string): Promise<Buffer>;
     meta(filePath: string): Promise<StorageDriver$FileMetadataResponse>;

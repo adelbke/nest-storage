@@ -7,14 +7,11 @@ export interface LocalDiskOptions {
 export interface S3DiskOptions {
     driver: "s3";
     profile?: string;
-    region?: string;
+    region: string;
     bucket: string;
-    prefix?: string;
-    accessKey?: string;
-    secretKey?: string;
+    accessKey: string;
+    secretKey: string;
     basePath: string;
-    fetchRemoteCredentials?: boolean;
-    baseUrl?: string;
     endpoint?: string;
 }
 export type DiskOptions = LocalDiskOptions | S3DiskOptions;
