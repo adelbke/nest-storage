@@ -1,6 +1,7 @@
 import {
   DiskOptions,
   FileOptions,
+  LocalDiskOptions,
   StorageDriver,
   StorageDriver$FileMetadataResponse,
   StorageDriver$PutFileResponse,
@@ -10,7 +11,7 @@ import { join } from "path";
 import * as fs from "fs-extra";
 
 export class Local implements StorageDriver {
-  constructor(private disk: string, private config: DiskOptions) {}
+  constructor(private disk: string, private config: LocalDiskOptions) {}
 
   /**
    * Put file content to the path specified.
