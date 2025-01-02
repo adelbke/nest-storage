@@ -1,11 +1,12 @@
 /// <reference types="node" />
-import { StorageDriver, DiskOptions, FileOptions, StorageDriver$FileMetadataResponse, StorageDriver$PutFileResponse, StorageDriver$RenameFileResponse } from "../interfaces";
+/// <reference types="node" />
+import { StorageDriver, FileOptions, StorageDriver$FileMetadataResponse, StorageDriver$PutFileResponse, StorageDriver$RenameFileResponse, S3DiskOptions } from "../interfaces";
 import { S3 } from "aws-sdk";
 export declare class S3Storage implements StorageDriver {
     private readonly disk;
     private config;
     private client;
-    constructor(disk: string, config: DiskOptions);
+    constructor(disk: string, config: S3DiskOptions);
     put(path: string, fileContent: any, options?: FileOptions): Promise<StorageDriver$PutFileResponse>;
     signedUrl(path: string, expireInMinutes?: number): string;
     get(path: string): Promise<Buffer | null>;

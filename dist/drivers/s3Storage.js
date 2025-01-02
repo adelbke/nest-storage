@@ -31,6 +31,9 @@ class S3Storage {
                 secretAccessKey: config.secretKey,
             });
         }
+        if (config.endpoint) {
+            options.endpoint = config.endpoint;
+        }
         this.client = new aws_sdk_1.S3(options);
     }
     put(path, fileContent, options) {

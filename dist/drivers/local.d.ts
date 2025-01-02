@@ -1,4 +1,5 @@
 /// <reference types="node" />
+/// <reference types="node" />
 import { DiskOptions, FileOptions, StorageDriver, StorageDriver$FileMetadataResponse, StorageDriver$PutFileResponse, StorageDriver$RenameFileResponse } from "../interfaces";
 export declare class Local implements StorageDriver {
     private disk;
