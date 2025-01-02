@@ -37,6 +37,7 @@ export class S3Storage implements StorageDriver {
 
     if (config.endpoint) {
       options.endpoint = config.endpoint;
+      options.s3ForcePathStyle = true;
     }
 
     this.client = new S3(options);
